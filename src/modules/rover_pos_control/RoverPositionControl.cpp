@@ -550,7 +550,8 @@ RoverPositionControl::run()
 				//Offboard rate control
 				control_rates(_vehicle_rates, _rates_sp);
 			}
-		 	//TODO: Add stabilized mode for rovers
+
+			//TODO: Add stabilized mode for rovers
 		}
 
 		if (fds[1].revents & POLLIN) {

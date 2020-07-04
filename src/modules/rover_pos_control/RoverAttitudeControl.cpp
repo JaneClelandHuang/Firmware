@@ -59,7 +59,7 @@ float RoverAttitudeController::control_attitude(const struct ECL_ControlData &ct
 
 	float yaw_error = ctl_data.yaw_setpoint - ctl_data.yaw;
 
-	_rate_setpoint = yaw_error/ _tc;
+	_rate_setpoint = yaw_error / _tc;
 
 	//TODO: Move attitude controller from rover pos control
 
@@ -102,7 +102,7 @@ float RoverAttitudeController::control_bodyrate(const struct ECL_ControlData &ct
 	/* Calculate body angular rate error */
 	_rate_error = _bodyrate_setpoint - ctl_data.body_z_rate; // body angular rate error
 
-	if (!lock_integrator && _k_i > 0.0f ) {
+	if (!lock_integrator && _k_i > 0.0f) {
 
 		float id = _rate_error * dt;
 
@@ -130,7 +130,8 @@ float RoverAttitudeController::control_bodyrate(const struct ECL_ControlData &ct
 	return math::constrain(_last_output, -1.0f, 1.0f);
 }
 
-float RoverAttitudeController::control_euler_rate(const struct ECL_ControlData &ctl_data) {
+float RoverAttitudeController::control_euler_rate(const struct ECL_ControlData &ctl_data)
+{
 	/* Transform setpoint to body angular rates (jacobian) */
 	_bodyrate_setpoint = -sinf(ctl_data.roll) * ctl_data.pitch_rate_setpoint +
 			     cosf(ctl_data.roll) * cosf(ctl_data.pitch) * _rate_setpoint;
